@@ -22,6 +22,7 @@ export class DalleService {
 
     try {
       const response = await axios.post(this.baseUrl, data, {headers: headers});
+      console.log("Service reponse: ", response);
       return response.data;
     } catch(error) {
       console.error(error);
