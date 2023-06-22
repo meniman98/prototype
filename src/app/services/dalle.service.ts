@@ -12,12 +12,13 @@ export class DalleService {
   async generateImage(prompt: string, apiKey: string): Promise<any> {
     const headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer ${apiKey}",
+      "Authorization": `Bearer ${apiKey}`,
     };
 
     const data = {
       "prompt": prompt,
       "n": 1,
+      "size": "512x512"
     };
 
     try {
