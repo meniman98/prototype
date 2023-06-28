@@ -7,7 +7,6 @@ import {environment} from "../../environments/environment";
 })
 export class DalleService {
   private baseUrl = "https://api.openai.com/v1/images/generations"
-  private apiKey = "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"
   constructor() { }
 
   async generateImage(prompt: string): Promise<any> {
