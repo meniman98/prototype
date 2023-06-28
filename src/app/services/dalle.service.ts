@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DalleService {
   private baseUrl = "https://api.openai.com/v1/images/generations"
-
+  private apiKey = "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"
   constructor() { }
 
-  async generateImage(prompt: string, apiKey: string): Promise<any> {
+  async generateImage(prompt: string): Promise<any> {
     const headers = {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiKey}`,
+      "Authorization": `Bearer ${(environment.apiKey)}`,
     };
 
     const data = {
       "prompt": prompt,
       "n": 1,
-      "size": "512x512"
+      "size": "256x256"
     };
 
     try {
