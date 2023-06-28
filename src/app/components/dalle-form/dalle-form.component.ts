@@ -8,14 +8,13 @@ import { DalleService } from 'src/app/services/dalle.service';
 })
 export class DalleFormComponent {
   prompt = ""
-  apiKey = ""
   imageSrc = ""
 
   constructor(private dalleService: DalleService) { }
 
   async onSubmit() {
     try {
-      const response = await this.dalleService.generateImage(this.prompt, this.apiKey);
+      const response = await this.dalleService.generateImage(this.prompt);
       console.log("Form response: ", response);
       this.imageSrc = response.data[0].url;
     } catch (error) {
