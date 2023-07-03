@@ -5,11 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DalleFormComponent } from './components/dalle-form/dalle-form.component';
 import { FormsModule } from '@angular/forms';
+import {Routes} from "@angular/router";
+import { ProductsComponent } from './components/products/products.component';
+
+const routes: Routes = [
+  {path: "generate", component: DalleFormComponent},
+  {path: "products", component: ProductsComponent},
+  {path: "", redirectTo: "/generate", pathMatch: "full"}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    DalleFormComponent
+    DalleFormComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
