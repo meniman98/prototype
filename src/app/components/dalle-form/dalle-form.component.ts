@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { DalleService } from 'src/app/services/dalle.service';
+import {Component} from '@angular/core';
+import {DalleService} from 'src/app/services/dalle.service';
 
 @Component({
   selector: 'app-dalle-form',
@@ -10,9 +10,10 @@ export class DalleFormComponent {
   prompt = ""
   imageSrc = ""
 
-  constructor(private dalleService: DalleService) { }
+  constructor(private dalleService: DalleService) {
+  }
 
-  async onSubmit() {
+  async onSubmitt() {
     try {
       const response = await this.dalleService.generateImage(this.prompt);
       console.log("Form response: ", response);
@@ -20,6 +21,19 @@ export class DalleFormComponent {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  onSubmit() {
+    this.dalleService.generateImage(this.prompt)
+      .then(response => {
+        // Handle the response here.
+        console.log("Form response: ", response);
+        this.imageSrc = response.data[0].url;
+      })
+      .catch(error => {
+        // Handle any errors here.
+        console.error(error);
+      });
   }
 
 }
