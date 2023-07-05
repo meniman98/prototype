@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { DalleService } from './dalle.service';
+import {TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {DalleService} from './dalle.service';
 
 describe('DalleService', () => {
   let service: DalleService;
@@ -38,10 +38,29 @@ describe('DalleService', () => {
 
     service.generateImage(testPrompt).then((response) => {
       expect(response).toEqual(dummyResponse);
+
+      // Assert that "created" is an integer with 10 digits
+      expect(typeof response.created).toEqual('number');
+      expect(response.created.toString().length).toEqual(10);
+
+      // Assert that "data" is an array with one object, which has a URL string
+      // 1. Assert that data is an array
+      expect(Array.isArray(response.data)).toBe(true);
+
+      // 2. Assert that data's array length is 1
+      expect(response.data.length).toEqual(1);
+
+      // 3. Assert that the array's first object is a string
+      expect(typeof response.data[0].url).toEqual('string');
+
+      // 4. Assert that the string starts with http, which suggests a URL
+      expect(response.data[0].url.startsWith('http')).toBe(true);
     });
+
 
     const req = httpMock.expectOne('https://api.openai.com/v1/images/generations');
     expect(req.request.method).toBe('POST');
+    expect(req.request.responseType)
     req.flush(dummyResponse);
   });
 });
