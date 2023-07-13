@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {DalleService} from 'src/app/services/dalle.service';
-import {FormControl, Validators, FormGroup} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-dalle-form',
@@ -8,7 +8,6 @@ import {FormControl, Validators, FormGroup} from "@angular/forms";
   styleUrls: ['./dalle-form.component.css']
 })
 export class DalleFormComponent {
-  prompt = ""
   promptControl: FormControl;
   imageSrc = ""
 
