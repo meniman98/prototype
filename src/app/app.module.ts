@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 // independently added imports
+import {ReactiveFormsModule} from "@angular/forms";
 import {DalleFormComponent} from './components/dalle-form/dalle-form.component';
 import {FormsModule} from '@angular/forms';
 import {Routes} from "@angular/router";
@@ -27,6 +28,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     DalleService

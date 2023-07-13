@@ -60,7 +60,6 @@ describe('DalleService', () => {
 
     const req = httpMock.expectOne('https://api.openai.com/v1/images/generations');
     expect(req.request.method).toBe('POST');
-    expect(req.request.responseType)
     req.flush(dummyResponse);
   });
 });
