@@ -1,11 +1,20 @@
 <form (ngSubmit)="onSubmit()">
 
+  <!--  <div>-->
+  <!--    <label for="prompt">Prompt:</label>-->
+  <!--    <input id="prompt" [(ngModel)]="prompt" name="prompt" required/>-->
+  <!--  </div>-->
+
   <div>
     <label for="prompt">Prompt:</label>
-    <input id="prompt" [(ngModel)]="prompt" name="prompt" required/>
+    <input id="prompt" [formControl]="promptControl" required/>
+    <div *ngIf="promptControl.errors?.['required'] && promptControl.touched">This field is required.</div>
+    <div *ngIf="promptControl.errors?.['minlength'] && promptControl.touched">Minimum length is 7 characters.</div>
+    <div *ngIf="promptControl.errors?.['maxlength'] && promptControl.touched">Maximum length is 250 characters.</div>
+    <div *ngIf="promptControl.errors?.['pattern'] && promptControl.touched">No special characters allowed.</div>
   </div>
 
-  <button type="submit">Generate Image</button>
+  <button type="submit" [disabled]="promptControl.invalid">Generate Image</button>
 
 </form>
 
